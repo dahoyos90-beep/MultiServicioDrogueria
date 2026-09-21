@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { Api, mensajeError } from '../api';
 import { ReporteStockBajo, ReporteVencidos, ReporteVentas } from '../models';
 
 @Component({
   selector: 'app-reportes',
-  imports: [FormsModule, DecimalPipe],
+  imports: [FormsModule, DecimalPipe, DatePipe],
   template: `
     <section class="toolbar">
       <h1>Reportes</h1>
@@ -59,7 +59,7 @@ import { ReporteStockBajo, ReporteVencidos, ReporteVentas } from '../models';
                     <td class="num">
                       <span class="badge alerta">{{ m.cantidad_stock }}</span>
                     </td>
-                    <td>{{ m.fecha_vencimiento }}</td>
+                    <td>{{ m.fecha_vencimiento | date:'dd/MM/yyyy' }}</td>
                   </tr>
                 }
               </tbody>
@@ -117,7 +117,7 @@ import { ReporteStockBajo, ReporteVencidos, ReporteVentas } from '../models';
                     <td>{{ m.laboratorio_fabrica }}</td>
                     <td class="num">{{ m.cantidad_stock }}</td>
                     <td>
-                      <span class="badge peligro">{{ m.fecha_vencimiento }}</span>
+                      <span class="badge peligro">{{ m.fecha_vencimiento | date:'dd/MM/yyyy' }}</span>
                     </td>
                   </tr>
                 }
@@ -174,6 +174,7 @@ import { ReporteStockBajo, ReporteVencidos, ReporteVentas } from '../models';
                   <th class="num">Valor unitario</th>
                   <th class="num">Valor total</th>
                   <th>Fecha</th>
+                  <th>Hora de venta</th>
                 </tr>
               </thead>
               <tbody>
@@ -184,7 +185,8 @@ import { ReporteStockBajo, ReporteVencidos, ReporteVentas } from '../models';
                     <td class="num">{{ v.cantidad }}</td>
                     <td class="num">{{ +v.valor_unitario | number:'1.0-0' }}</td>
                     <td class="num">{{ +v.valor_total | number:'1.0-0' }}</td>
-                    <td>{{ v.fecha_hora }}</td>
+                    <td>{{ v.fecha_hora | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ v.fecha_hora | date:'hh:mm a' }}</td>
                   </tr>
                 }
               </tbody>

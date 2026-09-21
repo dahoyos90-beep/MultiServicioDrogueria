@@ -1,12 +1,12 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { Api, mensajeError } from '../api';
 import { Medicamento } from '../models';
 
 @Component({
   selector: 'app-medicamentos',
-  imports: [FormsModule, DecimalPipe],
+  imports: [FormsModule, DecimalPipe, DatePipe],
   template: `
     <section class="toolbar">
       <h1>Medicamentos</h1>
@@ -56,7 +56,7 @@ import { Medicamento } from '../models';
                       {{ m.cantidad_stock }}
                     </span>
                   </td>
-                  <td>{{ m.fecha_vencimiento }}</td>
+                  <td>{{ m.fecha_vencimiento | date:'dd/MM/yyyy' }}</td>
                   <td class="acciones">
                     <button (click)="editar(m)">Editar</button>
                     <button class="peligro" (click)="eliminar(m)">Borrar</button>

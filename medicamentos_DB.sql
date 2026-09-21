@@ -11,4 +11,4 @@ CREATE TABLE IF NOT EXISTS medicamentos (
     valor_unitario DECIMAL(12, 2) NOT NULL CHECK (valor_unitario >= 0),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+    );

@@ -1,0 +1,124 @@
+:root {
+  --bg: #08090e;
+  --card: #10131a;
+  --borde: #1e2530;
+  --verde: #49dd7d;
+  --azul: #35b2ea;
+  --texto: #e6edf3;
+  --suave: #8b98a9;
+  --alerta: #f5b301;
+  --peligro: #ff4d6d;
+  --degradado: linear-gradient(90deg, var(--azul), var(--verde));
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--texto);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(600px 400px at 0% 0%, rgba(53, 178, 234, .12), transparent 70%),
+    radial-gradient(600px 400px at 100% 100%, rgba(73, 221, 125, .10), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+h1, h2, h3 {
+  font-family: 'Exo 2', system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+h2 {
+  display: inline-block;
+  background: var(--degradado);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pagina { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+
+/* Tarjetas */
+.card {
+  background: var(--card);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.card:hover { border-color: rgba(53, 178, 234, .5); box-shadow: 0 0 16px rgba(53, 178, 234, .15); }
+
+/* Formularios */
+label { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--suave); }
+input, select {
+  background: #0b0e14;
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 2px rgba(53, 178, 234, .25);
+}
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; align-items: end; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin-bottom: 12px; }
+
+/* Botones */
+button {
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--azul);
+  background: transparent;
+  color: var(--azul);
+  transition: box-shadow .2s;
+}
+button:hover:not(:disabled) { box-shadow: 0 0 12px rgba(53, 178, 234, .45); }
+button.primario { background: var(--degradado); border-color: transparent; color: #06120a; }
+button.peligro { border-color: var(--peligro); color: var(--peligro); }
+button.peligro:hover:not(:disabled) { box-shadow: 0 0 12px rgba(255, 77, 109, .45); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Tablas */
+.tabla-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left;
+  color: var(--azul);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 10px;
+  border-bottom: 1px solid var(--borde);
+}
+td { padding: 10px; border-bottom: 1px solid var(--borde); }
+tbody tr:hover td { background: rgba(53, 178, 234, .06); }
+.num { text-align: right; }
+.acciones { display: flex; gap: 8px; }
+.vacio { text-align: center; color: var(--suave); padding: 24px; }
+
+/* Insignias y mensajes */
+.badge { padding: 2px 8px; border-radius: 999px; font-size: .75rem; font-weight: 700; }
+.badge.ok { background: rgba(73, 221, 125, .15); color: var(--verde); }
+.badge.alerta { background: rgba(245, 179, 1, .15); color: var(--alerta); }
+.badge.peligro { background: rgba(255, 77, 109, .15); color: var(--peligro); }
+
+.msg { padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; border: 1px solid; }
+.msg.ok { border-color: var(--verde); color: var(--verde); background: rgba(73, 221, 125, .08); }
+.msg.error { border-color: var(--peligro); color: var(--peligro); background: rgba(255, 77, 109, .08); }
+
+/* Paginación e indicadores */
+.paginacion { display: flex; gap: 12px; align-items: center; justify-content: flex-end; margin-top: 12px; color: var(--suave); }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi span { color: var(--suave); font-size: .85rem; }
+.kpi b { display: block; font-family: 'Exo 2', sans-serif; font-size: 1.6rem; color: var(--verde); }

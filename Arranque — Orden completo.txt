@@ -1,0 +1,107 @@
+Arranque — Orden completo
+Paso 1 — Base de datos
+Abre XAMPP Control Panel → en la fila MySQL pulsa Start → espera a que diga Stop.
+
+Verificación: http://localhost/phpmyadmin → deben aparecer medicamentos_db, ventas_db, reportes_db.
+
+Paso 2 — medicamentos-service
+Terminal 1 en VS Code (Ctrl + ñ o menú Terminal → Nueva terminal):
+
+text
+cd "C:\Users\aleja\OneDrive\Escritorio\ADSO\5\Angarita\22-09-2026\MultiServicioDrogueria"
+cd medicamentos-service
+npm start
+Debe aparecer:
+
+text
+Medicamentos Service corriendo en http://localhost:3001
+No cierres esta terminal.
+
+Probar:
+
+text
+http://localhost:3001/api/v1/medicamentos?page=1&limit=10
+Debe devolver:
+
+json
+{"data":[],"totalRecords":0,"currentPage":1,"totalPages":0}
+Paso 3 — ventas-service
+Terminal 2 en VS Code (pulsa el + al lado de la terminal actual, no cierres la anterior):
+
+text
+cd "C:\Users\aleja\OneDrive\Escritorio\ADSO\5\Angarita\22-09-2026\MultiServicioDrogueria"
+cd ventas-service
+npm start
+Debe aparecer:
+
+text
+Ventas Service corriendo en http://localhost:3002
+No cierres esta terminal.
+
+Probar:
+
+text
+http://localhost:3002/api/v1/ventas
+Debe devolver:
+
+json
+[]
+Paso 4 — reportes-service
+Terminal 3 en VS Code (otra vez +):
+
+text
+cd "C:\Users\aleja\OneDrive\Escritorio\ADSO\5\Angarita\22-09-2026\MultiServicioDrogueria"
+cd reportes-service
+npm start
+Debe aparecer:
+
+text
+Reportes Service corriendo en http://localhost:3003
+No cierres esta terminal.
+
+Probar:
+
+text
+http://localhost:3003/api/v1/reportes/stock-bajo?limite=10
+Debe devolver:
+
+json
+{"criterioLimite":10,"totalResultados":0,"medicamentos":[]}
+Paso 5 — api-gateway
+Terminal 4 en VS Code (+):
+
+text
+cd "C:\Users\aleja\OneDrive\Escritorio\ADSO\5\Angarita\22-09-2026\MultiServicioDrogueria"
+cd api-gateway
+mvnw.cmd spring-boot:run
+Debe aparecer:
+
+text
+Netty started on port 8080 (http)
+Started ApiGatewayApplication in X.XXX seconds
+No cierres esta terminal.
+
+Probar:
+
+text
+http://localhost:8080/api/v1/medicamentos?page=1&limit=10
+Debe devolver:
+
+json
+{"data":[],"totalRecords":0,"currentPage":1,"totalPages":0}
+Paso 6 — Angular (el front)
+Terminal 5 en VS Code (+):
+
+text
+cd "C:\Users\aleja\OneDrive\Escritorio\ADSO\5\Angarita\22-09-2026\MultiServicioDrogueria"
+cd drogueria-front
+npm start
+Debe aparecer:
+
+text
+Application bundle generation complete. [X.XXX seconds]
+  ➜  Local:   http://localhost:4200/
+Abrir en el navegador:
+
+text
+http://localhost:4200
